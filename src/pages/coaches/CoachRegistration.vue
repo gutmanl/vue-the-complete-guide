@@ -2,7 +2,7 @@
     <section>
         <base-card>
         <h2>Register as a coach now!</h2>
-        <coach-form />
+        <coach-form @save-data="saveData"/>
         </base-card>
     </section>
 </template>
@@ -13,6 +13,13 @@ import CoachForm from '../../components/coaches/CoachForm.vue';
 export default {
     components: {
         CoachForm
+    },
+    methods: {
+        saveData(data){
+            this.$store.dispatch('coaches/registerCoach', data);
+            //Replace instead of push makes it harder to go back to the form
+            this.$router.replace('/coaches');
+        }
     }
 }
 </script>

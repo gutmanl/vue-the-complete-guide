@@ -1,4 +1,5 @@
 <template>
+    <div>
     <!-- No v-if because BaseDialog wants a show prop, and !! to convert to boolean -->
     <BaseDialog :show="!!error" title="Error!" @close="errorAcknowledged">
         <p> {{ error }}</p>
@@ -9,7 +10,7 @@
     <section>
         <base-card>
             <div class="controls">
-                <base-button mode="outline" @click="loadCoaches">Refresh</base-button>
+                <base-button mode="outline" @click="loadCoaches(forceRefresh = true)">Refresh</base-button>
                 <base-button v-if="!isCoach && !isLoading" link to="/register">Register as Coach</base-button>
             </div>
             <BaseSpinner v-if="isLoading" />
@@ -24,6 +25,7 @@
             <h3 v-else>No coaches in system</h3>
         </base-card>
     </section>
+    </div>
 </template>
 
 <script>
@@ -70,10 +72,10 @@ export default {
         setFilters(updatedFilters) {
             this.activeFilters = updatedFilters;
         },
-        async loadCoaches() {
+        async loadCoaches(forceRefresh = false) {
             this.isLoading = true;
             try {
-                await this.$store.dispatch('coaches/loadCoaches');
+                await this.$store.dispatch('coaches/loadCoaches', {forceRefresh});
             } catch(error) {
                 this.error = error.message || "Unknown error! Please try again later.";
             } finally {

@@ -32,7 +32,7 @@ export default {
         const responseData = await response.json();
 
         if(!response.ok) {
-            //Error handling will be added later
+            throw new Error(responseData.message || "Failed to fetch response data! Error message unavailable!");
         }
 
         const coaches = [];

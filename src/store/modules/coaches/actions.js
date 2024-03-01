@@ -18,7 +18,7 @@ export default {
         // const responseData = await response.json();
 
         if(!response.ok) {
-            //Error handling will be added later
+            //Error handling may be added later
         }
 
         context.commit('registerCoach', {

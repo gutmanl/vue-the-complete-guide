@@ -1,4 +1,8 @@
 <template>
+    <!-- No v-if because BaseDialog wants a show prop, and !! to convert to boolean -->
+    <BaseDialog :show="!!error" title="Error!" @close="errorAcknowledged">
+        <p> {{ error }}</p>
+    </BaseDialog>
     <section>
         <coach-filter @change-filter="setFilters" />
     </section>
@@ -75,6 +79,9 @@ export default {
             } finally {
                 this.isLoading = false;
             }
+        },
+        errorAcknowledged() {
+            this.error = null;
         }
     }
 };

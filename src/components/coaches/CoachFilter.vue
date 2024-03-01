@@ -32,7 +32,7 @@ export default {
     },
     watch: {
         filters: {
-            handler(value) {
+            handler() {
                 this.$emit('change-filter', this.filters);
             },
             deep: true

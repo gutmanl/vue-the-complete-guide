@@ -11,7 +11,8 @@
         <base-card>
             <div class="controls">
                 <base-button mode="outline" @click="loadCoaches(forceRefresh = true)">Refresh</base-button>
-                <base-button v-if="!isCoach && !isLoading" link to="/register">Register as Coach</base-button>
+                <base-button v-if="isLoggedIn && !isCoach && !isLoading" link to="/register">Register as Coach</base-button>
+                <base-button link to="/auth" v-if="!isLoggedIn">Log In or Sign Up</base-button>
             </div>
             <BaseSpinner v-if="isLoading" />
             <ul v-else-if="hasCoaches">
@@ -63,6 +64,9 @@ export default {
         },
         isCoach() {
             return this.$store.getters['coaches/isCoach'];
+        },
+        isLoggedIn() {
+            return this.$store.getters.isAuthenticated;
         }
     },
     created() {

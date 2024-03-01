@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+
 import router from './router';
 import store from './store';
 import App from './App';
@@ -10,6 +11,7 @@ import BaseSpinner from './components/ui/BaseSpinner';
 import BaseDialog from './components/ui/BaseDialog';
 
 const app = createApp(App);
+app.config.devTools = true;
 app.use(router).use(store);
 
 app.component('BaseCard', BaseCard);

@@ -13,6 +13,18 @@ import AppHeader from './components/layout/AppHeader.vue';
 export default {
     components: {
         AppHeader
+    },
+    computed: {
+      didAutoLogout() {
+        return this.$store.getters['didAutoLogout'];
+      }
+    },
+    watch: {
+      didAutoLogout(curValue, oldValue) {
+          if(curValue === true && curValue != oldValue) {
+            this.$router.replace('/coaches');
+          }
+      }
     }
 };
 </script>

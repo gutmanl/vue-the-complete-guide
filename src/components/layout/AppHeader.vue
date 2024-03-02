@@ -29,6 +29,9 @@ export default {
       return this.$store.getters.isAuthenticated;
     }
   },
+  created() {
+    this.$store.dispatch('tryLogin');
+  },
   methods: {
     logOut() {
       this.$store.dispatch('logOut');

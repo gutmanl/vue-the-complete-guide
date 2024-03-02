@@ -12,7 +12,7 @@
             <div class="controls">
                 <base-button mode="outline" @click="loadCoaches(forceRefresh = true)">Refresh</base-button>
                 <base-button v-if="isLoggedIn && !isCoach && !isLoading" link to="/register">Register as Coach</base-button>
-                <base-button link to="/auth" v-if="!isLoggedIn">Log In or Sign Up</base-button>
+                <base-button link to="/auth?redirect=register" v-if="!isLoggedIn">Want to register as coach? Log In or Sign up</base-button>
             </div>
             <BaseSpinner v-if="isLoading" />
             <ul v-else-if="hasCoaches">
